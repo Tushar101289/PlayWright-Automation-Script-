@@ -153,4 +153,3 @@ test.describe('Sign Up Form', () => {
     });
   }
 });
-

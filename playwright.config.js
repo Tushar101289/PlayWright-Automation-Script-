@@ -8,7 +8,7 @@ import { defineConfig, devices } from '@playwright/test';
  */
 const config = ({
   testDir: './tests',
-  timeout: 40_000,
+  timeout: 10_000,
   reporter :'html',
   use: {
 

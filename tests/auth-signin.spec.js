@@ -189,53 +189,102 @@
 
 // version 4
 
+// const { test, expect } = require('@playwright/test');
+
+// const signInUsers = [
+//   { email: 'waweniw529@deusa7.com', password: 'waweniw529@deusa7.com' }
+// ];
+
+// test.describe('Sign In Form', () => {
+//   for (const user of signInUsers) {
+//     test(`Sign in with ${user.email}`, async ({ page }) => {
+//       // Go to sign-in page
+//       await page.goto('https://contest.inpulse.education/signin');
+//       console.log('✅ Page loaded');
+
+//       // Toggle to Sign In form if needed
+//       const toggleTextElement = await page.locator('p:has-text("Sign Up"), p:has-text("Sign In")').first();
+//       const toggleText = await toggleTextElement.textContent();
+//       console.log(`ℹ️ Toggle text found: ${toggleText.trim()}`);
+
+//       if (toggleText.includes('Sign In')) {
+//         console.log('🔁 Toggling to Sign In form');
+//         await toggleTextElement.click();
+//       } else {
+//         console.log('✅ Already on Sign In form');
+//       }
+
+//       // Fill the sign-in form
+//       const emailInput = page.locator('input[name="identifier"]');
+//       const passwordInput = page.locator('input[name="password"]');
+//       await expect(emailInput).toBeVisible();
+//       console.log('✍️ Email field found');
+//       await emailInput.fill(user.email);
+//       console.log(`✅ Filled email: ${user.email}`);
+
+//       await expect(passwordInput).toBeVisible();
+//       console.log('✍️ Password field found');
+//       await passwordInput.fill(user.password);
+//       console.log(`✅ Filled password`);
+
+//       // Submit the form
+//       const submitButton = page.locator('button[type="submit"]');
+//       await expect(submitButton).toBeVisible();
+//       console.log('🚀 Clicking submit');
+//       await submitButton.click();
+
+//       // Wait for SPA navigation to home page
+//       await expect(page).toHaveURL('https://contest.inpulse.education/');
+//       console.log(`🎯 Successfully navigated to home page: ${await page.url()}`);
+//     });
+//   }
+// });
+
+
+//version 5
+
 const { test, expect } = require('@playwright/test');
 
 const signInUsers = [
-  { email: 'waweniw529@deusa7.com', password: 'waweniw529@deusa7.com' }
+  { email: 'tushar+hod@technicalcareer.education', password: 'tester.hod@inpulse.in' }
 ];
 
 test.describe('Sign In Form', () => {
   for (const user of signInUsers) {
     test(`Sign in with ${user.email}`, async ({ page }) => {
       // Go to sign-in page
-      await page.goto('https://contest.inpulse.education/signin');
+      await page.goto('https://inpulse-staging-dashboard.web.app/signin', {
+        waitUntil: 'domcontentloaded'
+      });
       console.log('✅ Page loaded');
 
-      // Toggle to Sign In form if needed
-      const toggleTextElement = await page.locator('p:has-text("Sign Up"), p:has-text("Sign In")').first();
-      const toggleText = await toggleTextElement.textContent();
-      console.log(`ℹ️ Toggle text found: ${toggleText.trim()}`);
-
-      if (toggleText.includes('Sign In')) {
-        console.log('🔁 Toggling to Sign In form');
-        await toggleTextElement.click();
-      } else {
-        console.log('✅ Already on Sign In form');
-      }
-
-      // Fill the sign-in form
-      const emailInput = page.locator('input[name="identifier"]');
+      // Selectors from provided HTML
+      const emailInput = page.locator('input[name="email"]');
       const passwordInput = page.locator('input[name="password"]');
-      await expect(emailInput).toBeVisible();
-      console.log('✍️ Email field found');
-      await emailInput.fill(user.email);
-      console.log(`✅ Filled email: ${user.email}`);
-
-      await expect(passwordInput).toBeVisible();
-      console.log('✍️ Password field found');
-      await passwordInput.fill(user.password);
-      console.log(`✅ Filled password`);
-
-      // Submit the form
       const submitButton = page.locator('button[type="submit"]');
+
+      // Fill in email
+      await expect(emailInput).toBeVisible();
+      console.log('✍️ Email input found');
+      await emailInput.fill(user.email);
+      console.log(`✅ Email entered: ${user.email}`);
+
+      // Fill in password
+      await expect(passwordInput).toBeVisible();
+      console.log('✍️ Password input found');
+      await passwordInput.fill(user.password);
+      console.log(`✅ Password entered`);
+
+      // Click submit
       await expect(submitButton).toBeVisible();
-      console.log('🚀 Clicking submit');
+      console.log('🚀 Clicking submit button');
       await submitButton.click();
 
-      // Wait for SPA navigation to home page
-      await expect(page).toHaveURL('https://contest.inpulse.education/');
-      console.log(`🎯 Successfully navigated to home page: ${await page.url()}`);
+      // Wait for expected home URL (update path if needed)
+      await expect(page).toHaveURL('https://inpulse-staging-dashboard.web.app/t/eb9d49bb-bdb9-43c0-9741-febeeca7224a', {
+        timeout: 15000
+      });
+      console.log(`🎯 Redirected to home: ${await page.url()}`);
     });
   }
 });
