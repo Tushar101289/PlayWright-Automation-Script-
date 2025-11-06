@@ -1,0 +1,84 @@
+--------------------------------------------------------------------------
+🕒 Log Time: 2025-09-24 17:30:39
+🔹 Starting Test: Valid Login
+🔗 URL: https://staging.api.inpulse.education/auth/signin
+📤 Payload:
+{
+  "email": "anitha.library@sahyadri.edu.in",
+  "password": "anitha.library@sahyadri.edu.in"
+}
+✅ Test Passed: Valid Login
+--------------------------------------------------------------------------
+🕒 Log Time: 2025-09-24 17:30:39
+🔹 Starting Test: Negative Login
+🔗 URL: https://staging.api.inpulse.education/auth/signin
+📤 Payload:
+{
+  "email": "fakeuser@domain.com",
+  "password": "wrongpassword"
+}
+✅ Test Passed: Negative Login
+--------------------------------------------------------------------------
+🕒 Log Time: 2025-09-24 17:30:39
+🔹 Starting Test: Invalid Email Format
+🔗 URL: https://staging.api.inpulse.education/auth/signin
+📤 Payload:
+{
+  "email": "notanemail",
+  "password": "anitha.library@sahyadri.edu.in"
+}
+✅ Test Passed: Invalid Email Format
+--------------------------------------------------------------------------
+🕒 Log Time: 2025-09-24 17:30:39
+🔹 Starting Test: Special Characters Password
+🔗 URL: https://staging.api.inpulse.education/auth/signin
+📤 Payload:
+{
+  "email": "anitha.library@sahyadri.edu.in",
+  "password": "anitha.library@sahyadri.edu.in"
+}
+✅ Test Passed: Special Characters Password
+--------------------------------------------------------------------------
+🕒 Log Time: 2025-09-24 17:31:05
+🔹 Starting Test: Valid Login
+🔗 URL: https://staging.api.inpulse.education/auth/signin
+📤 Payload:
+{
+  "email": "anitha.library@sahyadri.edu.in",
+  "password": "anitha.library@sahyadri.edu.in"
+}
+❌ Test Failed: Valid Login
+❗ Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+Expected: [32m400[39m
+Received: [31m200[39m
+--------------------------------------------------------------------------
+🕒 Log Time: 2025-09-24 17:31:06
+🔹 Starting Test: Negative Login
+🔗 URL: https://staging.api.inpulse.education/auth/signin
+📤 Payload:
+{
+  "email": "fakeuser@domain.com",
+  "password": "wrongpassword"
+}
+✅ Test Passed: Negative Login
+--------------------------------------------------------------------------
+🕒 Log Time: 2025-09-24 17:31:07
+🔹 Starting Test: Invalid Email Format
+🔗 URL: https://staging.api.inpulse.education/auth/signin
+📤 Payload:
+{
+  "email": "notanemail",
+  "password": "anitha.library@sahyadri.edu.in"
+}
+✅ Test Passed: Invalid Email Format
+--------------------------------------------------------------------------
+🕒 Log Time: 2025-09-24 17:31:07
+🔹 Starting Test: Special Characters Password
+🔗 URL: https://staging.api.inpulse.education/auth/signin
+📤 Payload:
+{
+  "email": "anitha.library@sahyadri.edu.in",
+  "password": "anitha.library@sahyadri.edu.in"
+}
+✅ Test Passed: Special Characters Password

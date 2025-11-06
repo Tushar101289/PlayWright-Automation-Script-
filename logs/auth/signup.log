@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------
+🕒 Log Time: 2025-09-24 16:34:08
+🔹 Starting Test: Signup with new email
+🔗 URL: https://staging.api.inpulse.education/auth/signup
+📤 Payload:
+{
+  "email": "user_1758711847991@test.com",
+  "password": "Test@1234",
+  "name": "New User"
+}
+✅ Test Passed: Signup with new email
+--------------------------------------------------------------------------
+🕒 Log Time: 2025-09-24 16:34:08
+🔹 Starting Test: Signup with duplicate email
+🔗 URL: https://staging.api.inpulse.education/auth/signup
+📤 Payload:
+{
+  "email": "user_1758711847991@test.com",
+  "password": "Test@1234",
+  "name": "New User"
+}
+✅ Test Passed: Signup with duplicate email

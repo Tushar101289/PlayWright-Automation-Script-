@@ -2,7 +2,9 @@
   "name": "testplaywriteautomation",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "admission": "npx playwright test tests/auth-admission-extra-curricular.spec.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -10,5 +12,8 @@
   "devDependencies": {
     "@playwright/test": "^1.53.0",
     "@types/node": "^24.0.0"
+  },
+  "dependencies": {
+    "form-data": "^4.0.4"
   }
 }

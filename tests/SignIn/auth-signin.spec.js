@@ -243,48 +243,122 @@
 
 //version 5
 
-const { test, expect } = require('@playwright/test');
+// const { test, expect } = require('@playwright/test');
 
-const signInUsers = [
-  { email: 'tushar+hod@technicalcareer.education', password: 'tester.hod@inpulse.in' }
-];
+// const signInUsers = [
+//   { email: 'tushar+hod@technicalcareer.education', password: 'tester.hod@inpulse.in' }
+// ];
 
-test.describe('Sign In Form', () => {
-  for (const user of signInUsers) {
-    test(`Sign in with ${user.email}`, async ({ page }) => {
-      // Go to sign-in page
-      await page.goto('https://inpulse-staging-dashboard.web.app/signin', {
-        waitUntil: 'domcontentloaded'
-      });
-      console.log('✅ Page loaded');
+// test.describe('Sign In Form', () => {
+//   for (const user of signInUsers) {
+//     test(`Sign in with ${user.email}`, async ({ page }) => {
+//       // Go to sign-in page
+//       await page.goto('https://inpulse-staging-dashboard.web.app/signin', {
+//         waitUntil: 'domcontentloaded'
+//       });
+//       console.log('✅ Page loaded');
 
-      // Selectors from provided HTML
-      const emailInput = page.locator('input[name="email"]');
-      const passwordInput = page.locator('input[name="password"]');
-      const submitButton = page.locator('button[type="submit"]');
+//       // Selectors from provided HTML
+//       const emailInput = page.locator('input[name="email"]');
+//       const passwordInput = page.locator('input[name="password"]');
+//       const submitButton = page.locator('button[type="submit"]');
 
-      // Fill in email
-      await expect(emailInput).toBeVisible();
-      console.log('✍️ Email input found');
-      await emailInput.fill(user.email);
-      console.log(`✅ Email entered: ${user.email}`);
+//       // Fill in email
+//       await expect(emailInput).toBeVisible();
+//       console.log('✍️ Email input found');
+//       await emailInput.fill(user.email);
+//       console.log(`✅ Email entered: ${user.email}`);
 
-      // Fill in password
-      await expect(passwordInput).toBeVisible();
-      console.log('✍️ Password input found');
-      await passwordInput.fill(user.password);
-      console.log(`✅ Password entered`);
+//       // Fill in password
+//       await expect(passwordInput).toBeVisible();
+//       console.log('✍️ Password input found');
+//       await passwordInput.fill(user.password);
+//       console.log(`✅ Password entered`);
 
-      // Click submit
-      await expect(submitButton).toBeVisible();
-      console.log('🚀 Clicking submit button');
-      await submitButton.click();
+//       // Click submit
+//       await expect(submitButton).toBeVisible();
+//       console.log('🚀 Clicking submit button');
+//       await submitButton.click();
 
-      // Wait for expected home URL (update path if needed)
-      await expect(page).toHaveURL('https://inpulse-staging-dashboard.web.app/t/eb9d49bb-bdb9-43c0-9741-febeeca7224a', {
-        timeout: 15000
-      });
-      console.log(`🎯 Redirected to home: ${await page.url()}`);
-    });
-  }
+//       // Wait for expected home URL (update path if needed)
+//       await expect(page).toHaveURL('https://inpulse-staging-dashboard.web.app/t/eb9d49bb-bdb9-43c0-9741-febeeca7224a', {
+//         timeout: 15000
+//       });
+//       console.log(`🎯 Redirected to home: ${await page.url()}`);
+//     });
+//   }
+// });
+
+
+//version 6
+
+import { test, expect } from '@playwright/test';
+import { logToFile } from '../../utils/logger.js';
+
+// 📂 Log file path
+const filename = 'logs/signin/signin.log';
+
+// 🕒 Timestamp helper
+function getDateTime() {
+  const now = new Date();
+   const pad = (n) => n.toString().padStart(2, '0'); // ✅ Works in JS
+  return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())} ${pad(
+    now.getHours()
+  )}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+}
+
+// 🌐 Base URLs
+const baseURL = 'https://inpulse-staging.web.app/signin';
+const dashboardURL = 'https://inpulse-staging.web.app/';
+
+// ✅ Positive Login Test
+test('Positive Login with valid credentials', async ({ page }) => {
+  const payload = {
+    email: 'testingprocess@testingprocess.com',
+    password: 'testingprocess@testingprocess.com' // replace with valid
+  };
+
+  logToFile(filename, '--------------------------------------------------------------------------');
+  logToFile(filename, `🕒 Log Time: ${getDateTime()}`);
+  logToFile(filename, '✅ Starting Positive Login Test');
+  logToFile(filename, `🔗 URL: ${baseURL}`);
+  logToFile(filename, '📤 Payload:\n' + JSON.stringify(payload, null, 2));
+
+  await page.goto(baseURL);
+  await page.fill('#signin-email-or-username', payload.email);
+  await page.fill('#signin-password', payload.password);
+  await page.click('#signin-button-submit');
+
+  await expect(page).toHaveURL(dashboardURL);
+  await expect(page.locator('text=TESTINGPROCESS')).toBeVisible();
+
+  logToFile(filename, '📥 Result: Login successful, user redirected to dashboard.\n');
+});
+
+// ❌ Negative Login Test (dynamic error capture)
+test('Negative Login with invalid credentials', async ({ page }) => {
+  const payload = {
+    email: 'wrong@test.com',
+    password: 'WrongPassword'
+  };
+
+  logToFile(filename, '--------------------------------------------------------------------------');
+  logToFile(filename, `🕒 Log Time: ${getDateTime()}`);
+  logToFile(filename, '❌ Starting Negative Login Test');
+  logToFile(filename, `🔗 URL: ${baseURL}`);
+  logToFile(filename, '📤 Payload:\n' + JSON.stringify(payload, null, 2));
+
+  await page.goto(baseURL);
+  await page.fill('#signin-email-or-username', payload.email);
+  await page.fill('#signin-password', payload.password);
+  await page.click('#signin-button-submit');
+
+  // Capture whatever error message is shown dynamically
+  const errorLocator = page.locator('.error-message'); // change selector to actual error element
+  const errorMessage = await errorLocator.textContent();
+
+  logToFile(filename, `📥 Result: Login failed, error message displayed: "${errorMessage?.trim()}"\n`);
+
+  // Optional assertion to ensure some error message is visible
+  await expect(errorLocator).toBeVisible();
 });

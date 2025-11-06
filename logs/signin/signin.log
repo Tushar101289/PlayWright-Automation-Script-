@@ -1,0 +1,60 @@
+--------------------------------------------------------------------------
+🕒 Log Time: 2025-09-10 10:33:57
+✅ Starting Positive Login Test
+🔗 URL: https://inpulse-staging.web.app/signin
+📤 Payload:
+{
+  "email": "testingprocess@testingprocess.com",
+  "password": "testingprocess@testingprocess.com"
+}
+📥 Result: Login successful, user redirected to dashboard.
+
+--------------------------------------------------------------------------
+🕒 Log Time: 2025-09-10 10:33:58
+❌ Starting Negative Login Test
+🔗 URL: https://inpulse-staging.web.app/signin
+📤 Payload:
+{
+  "email": "wrong@test.com",
+  "password": "WrongPassword"
+}
+--------------------------------------------------------------------------
+🕒 Log Time: 2025-09-10 12:54:54
+✅ Starting Positive Login Test
+🔗 URL: https://inpulse-staging.web.app/signin
+📤 Payload:
+{
+  "email": "testingprocess@testingprocess.com",
+  "password": "testingprocess@testingprocess.com"
+}
+📥 Result: Login successful, user redirected to dashboard.
+
+--------------------------------------------------------------------------
+🕒 Log Time: 2025-09-10 12:54:56
+❌ Starting Negative Login Test
+🔗 URL: https://inpulse-staging.web.app/signin
+📤 Payload:
+{
+  "email": "wrong@test.com",
+  "password": "WrongPassword"
+}
+--------------------------------------------------------------------------
+🕒 Log Time: 2025-09-10 17:27:13
+✅ Starting Positive Login Test
+🔗 URL: https://inpulse-staging.web.app/signin
+📤 Payload:
+{
+  "email": "testingprocess@testingprocess.com",
+  "password": "testingprocess@testingprocess.com"
+}
+📥 Result: Login successful, user redirected to dashboard.
+
+--------------------------------------------------------------------------
+🕒 Log Time: 2025-09-10 17:27:16
+❌ Starting Negative Login Test
+🔗 URL: https://inpulse-staging.web.app/signin
+📤 Payload:
+{
+  "email": "wrong@test.com",
+  "password": "WrongPassword"
+}
